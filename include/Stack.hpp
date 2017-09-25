@@ -13,7 +13,7 @@ public:
     }
     //Конструктор класса с параметром
     Stack(size_t st) : array_size_{st},
-                       array_{new T[n]}{ //Конструктор для стека с параметром
+                       array_{new T[st]}{ //Конструктор для стека с параметром
     }
     //Метод count
     size_t count() const{
