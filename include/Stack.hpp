@@ -8,20 +8,19 @@ class Stack
     size_t count_ = 0; //Значение счетчика по умолчанию
 public:
     //Конструктор класса без параметров
-    Stack(){
-      array_size_ = 10; //По умолчанию размер стека задается равным 10
-      array_ = new T[array_size_]; //Определение указателя выделенной для массива памятью
-    };
+    Stack() : array_size_{10},
+              array_{new T[array_size_]}{ //Конструктор для стека по умолчанию
+    }
     //Конструктор класса с параметром
-    Stack(size_t st) : array_size_(st){
-      array_ = new T[st]; //Определение указателя выделенной для массива памятью
-    };
+    Stack(size_t st) : array_size_{st},
+                       array_{new T[n]}{ //Конструктор для стека с параметром
+    }
     //Метод count
     size_t count() const{
       return count_;
     };
     //Метод для увеличения размеров стека
-    void More_StackSize(){
+    void resizeStack(){
       if (count_ == array_size_){
             T* new_array_ = new T[2*array_size_]; //Выделение новой памяти под стек
             for (int i = 0; i != array_size_; ++i){
@@ -32,18 +31,15 @@ public:
           }
         };
     void push(T const &value){
-      More_StackSize(); //Метод для увеличения размеров стека
+      resizeStack(); //Метод для увеличения размеров стека
       array_[count_] = value; //Добавляем значение в стек по ссылке
       ++count_; //Увеличиваем счетчик на единицу
     }
-    //Метод для контроля выхода счетчика за границы массива
-    void Null_Stack(){
-      if (count_ == 0){
-           throw runtime_error("---Stack is empty---"); //Пуск исключения
-       }
-    }
+    
     T pop(){
-      Null_Stack(); //Метод для контроля выхода счетчика за границы массива
+       if (count_ == 0){
+           throw runtime_error("---Stack is empty---"); //Пуск исключения
+       } 
       --count_; //Снижение счетчика на единицу
       return array_[count_];
     }
