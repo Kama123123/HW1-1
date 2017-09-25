@@ -23,7 +23,7 @@ public:
     void resizeStack(){
       if (count_ == array_size_){
             T* new_array_ = new T[2*array_size_]; //Выделение новой памяти под стек
-            for (int i = 0; i != array_size_; ++i){
+            for (int i = 0; i < array_size_; ++i){
                 new_array_[i] = array_[i]; //Перезапись элементов из старого массива в новый при помощи цикла
             }
             delete []array_; // Освобождаем выделенную память
